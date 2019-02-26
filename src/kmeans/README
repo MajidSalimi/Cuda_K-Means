@@ -1,6 +1,3 @@
-# Cuda_K-Means
-Power aware implementation of K-Means algorithm on GPU
-
 Usage: ./kmeans [switches] -i filename
 
     -i filename      :file containing data to be clustered
@@ -11,5 +8,3 @@ Usage: ./kmeans [switches] -i filename
     -b               :input file is in binary format
     -r               :calculate RMSE                        [default=off]
     -o               :output cluster center coordinates     [default=off]
-
-
