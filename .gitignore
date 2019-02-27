@@ -8,3 +8,5 @@
 *.gch
 data/
 *.trace
+monitor
+kmeans
