@@ -7,3 +7,4 @@
 *.o
 *.gch
 data/
+*.trace
