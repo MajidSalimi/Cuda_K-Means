@@ -7,8 +7,7 @@
 #include <omp.h>
 
 #include <cuda.h>
-#include "cuda_runtime.h"
-#include "device_launch_parameters.h"
+
 #define THREADS_PER_DIM 16
 #define BLOCKS_PER_DIM 16
 #define THREADS_PER_BLOCK THREADS_PER_DIM*THREADS_PER_DIM
@@ -167,7 +166,7 @@ kmeansCuda(float  **feature,				/* in: [npoints][nfeatures] */
     t_features.normalized = false;
     t_features.channelDesc = chDesc0;
 
-	if(cudaBindTexture(NULL, &t_features, feature_d, &chDesc0, npoints*nfeatures*sizeof(float)) != CUDA_SUCCESS)
+	if(cudaBindTexture(NULL, &t_features, feature_d, &chDesc0, npoints*nfeatures*sizeof(float)) != cudaSuccess)
         printf("Couldn't bind features array to texture!\n");
 
 	cudaChannelFormatDesc chDesc1 = cudaCreateChannelDesc<float>();
@@ -175,7 +174,7 @@ kmeansCuda(float  **feature,				/* in: [npoints][nfeatures] */
     t_features_flipped.normalized = false;
     t_features_flipped.channelDesc = chDesc1;
 
-	if(cudaBindTexture(NULL, &t_features_flipped, feature_flipped_d, &chDesc1, npoints*nfeatures*sizeof(float)) != CUDA_SUCCESS)
+	if(cudaBindTexture(NULL, &t_features_flipped, feature_flipped_d, &chDesc1, npoints*nfeatures*sizeof(float)) != cudaSuccess)
         printf("Couldn't bind features_flipped array to texture!\n");
 
 	cudaChannelFormatDesc chDesc2 = cudaCreateChannelDesc<float>();
@@ -183,7 +182,7 @@ kmeansCuda(float  **feature,				/* in: [npoints][nfeatures] */
     t_clusters.normalized = false;
     t_clusters.channelDesc = chDesc2;
 
-	if(cudaBindTexture(NULL, &t_clusters, clusters_d, &chDesc2, nclusters*nfeatures*sizeof(float)) != CUDA_SUCCESS)
+	if(cudaBindTexture(NULL, &t_clusters, clusters_d, &chDesc2, nclusters*nfeatures*sizeof(float)) != cudaSuccess)
         printf("Couldn't bind clusters array to texture!\n");
 
 	/* copy clusters to constant memory */

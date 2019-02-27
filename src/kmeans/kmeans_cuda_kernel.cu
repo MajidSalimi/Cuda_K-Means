@@ -5,8 +5,7 @@
 #include <cuda.h>
 
 #include "kmeans.h"
-#include "cuda_runtime.h"
-#include "device_launch_parameters.h"
+
 // FIXME: Make this a runtime selectable variable!
 #define ASSUMED_NR_CLUSTERS 32
 

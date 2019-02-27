@@ -47,4 +47,4 @@ CFILES		:= cluster.c getopt.c kmeans.c kmeans_clustering.c rmse.c
 ################################################################################
 # Rules and targets
 
-include ../../common/common.mk
+include ../common/common.mk

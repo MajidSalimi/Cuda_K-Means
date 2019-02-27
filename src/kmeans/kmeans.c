@@ -77,6 +77,7 @@
 #include <math.h>
 #include <fcntl.h>
 #include <omp.h>
+#include <unistd.h>
 #include "kmeans.h"
 
 extern double wtime(void);
@@ -164,8 +165,8 @@ int setup(int argc, char **argv) {
             fprintf(stderr, "Error: no such file (%s)\n", filename);
             exit(1);
         }
-        read(infile, &npoints,   sizeof(int));
-        read(infile, &nfeatures, sizeof(int));        
+        int result = read(infile, &npoints,   sizeof(int));
+		result = read(infile, &nfeatures, sizeof(int));        
 
         /* allocate space for features[][] and read attributes of all objects */
         buf         = (float*) malloc(npoints*nfeatures*sizeof(float));
@@ -174,7 +175,7 @@ int setup(int argc, char **argv) {
         for (i=1; i<npoints; i++)
             features[i] = features[i-1] + nfeatures;
 
-        read(infile, buf, npoints*nfeatures*sizeof(float));
+		result = read(infile, buf, npoints*nfeatures*sizeof(float));
 
         close(infile);
     }
